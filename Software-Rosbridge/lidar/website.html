@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show</title>
+  <style>
+    :root{
+      background: #00053d;
+      font-size: 2rem;
+    }
+    body{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    .bigRadar{
+      height: 70vh;
+      aspect-ratio: 1 / 1;
+      border: 2px solid white;
+      border-radius: 100000px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left:50%;
+      filter: opacity(0.8);
+      transform: translate(-50%, -50%);
+      .circleLayer {
+        position: absolute;
+        border: 2px solid white;
+        border-radius: 100000px;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        transform-origin: center center;
+      }
+    }
+    .radarPoint{
+      animation: blink 1s linear forwards;
+    }
+    @keyframes blink {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    .originPoint{
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: red;
+      border-radius: 100000px;
+      top: calc(50% - 5px);
+      left: calc(50% - 5px);
+      z-index: 10;
+    }
+    .menu{
+      width: 60vw;
+      position: absolute;
+      top: 50%;
+      left:50%;
+      filter: opacity(0.8);
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column; 
+      justify-content: space-around;
+      align-items: center;
+    }
+    .menuItem{
+      width: 100%;
+      margin: 10px 0;
+      padding: 1rem;
+      border: 1px solid white;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: background 0.3s;
+      background: white;
+    }
+    .menuItem:hover{
+      background: rgb(197, 202, 255);
+    }
+    .controller {
+      width: 400px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+    }
+    .control {
+      padding: 20px;
+      margin: 10px;
+      width: 100px;
+      aspect-ratio: 1 / 1;
+      border-radius: 10px;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .controlSplit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="returnButton" 
+    style="position: absolute; top: 10px; left: 10px; z-index: 100; cursor: pointer; display:none; color:white; font-size:2rem;">
+    ⬅
+  </div>
+
+  <div class="menu">
+    <div class="menuItem">
+      <div class="menuImage">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+            <path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+            <path d="M10 15.5C10 16.3284 9.32843 17 8.5 17C7.67157 17 7 16.3284 7 15.5C7 14.6716 7.67157 14 8.5 14C9.32843 14 10 14.6716 10 15.5Z" stroke="currentColor" stroke-width="1.5"></path>
+            <path d="M17 8.5C17 7.67157 16.3284 7 15.5 7C14.6716 7 14 7.67157 14 8.5C14 9.32843 14.6716 10 15.5 10C16.3284 10 17 9.32843 17 8.5Z" stroke="currentColor" stroke-width="1.5"></path>
+            <path d="M8.5 14V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M15.5 10V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+        </svg>
+      </div>
+      <div class="menuText">
+        Controlar MK1
+      </div>
+    </div>
+    <div class="menuItem">
+      <div class="menuImage">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+            <circle cx="12" cy="11" r="2" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" />
+            <path d="M4 17.001C2.74418 15.3295 2 13.2516 2 11C2 5.47715 6.47715 1 12 1C17.5228 1 22 5.47715 22 11C22 13.2516 21.2558 15.3295 20 17.001" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" />
+            <path d="M7.52779 15C6.57771 13.9385 6 12.5367 6 11C6 7.68629 8.68629 5 12 5C15.3137 5 18 7.68629 18 11C18 12.5367 17.4223 13.9385 16.4722 15" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" />
+            <path d="M9.95154 17.8759C10.7222 16.758 11.1076 16.199 11.6078 16.0553C11.8644 15.9816 12.1356 15.9816 12.3922 16.0553C12.8924 16.199 13.2778 16.758 14.0485 17.8759C15.074 19.3633 15.5867 20.1071 15.488 20.727C15.4379 21.0414 15.2938 21.3315 15.076 21.5565C14.6465 22 13.7643 22 12 22C10.2357 22 9.35352 22 8.92399 21.5565C8.70617 21.3315 8.56205 21.0414 8.512 20.727C8.4133 20.1071 8.92605 19.3633 9.95154 17.8759Z" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <div class="menuText">
+        Visualización LIDAR
+      </div>
+    </div>
+  </div>
+  <div class="controller" style="display: none;">
+    <div class="controlSplit">
+      <div class="control up left">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+            <path d="M15 6.65032C15 6.65032 8.06166 6.10759 7.08461 7.08463C6.10755 8.06167 6.65037 15 6.65037 15M7.5 7.5L17.5 17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+    <div class="control up">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+          <path d="M12 5.5V19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M18 11C18 11 13.5811 5.00001 12 5C10.4188 4.99999 6 11 6 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
+    <div class="control up right">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+        <path d="M9 6.65032C9 6.65032 15.9383 6.10759 16.9154 7.08463C17.8924 8.06167 17.3496 15 17.3496 15M16.5 7.5L6.5 17.5" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+    </div>
+
+    <div class="controlSplit">
+      <div class="control left"/><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+    <path d="M5.5 12.002H19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M10.9999 18.002C10.9999 18.002 4.99998 13.583 4.99997 12.0019C4.99996 10.4208 11 6.00195 11 6.00195" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg></div>
+      <div class="control turn"/>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+            <path d="M15.1667 0.999756L15.7646 2.11753C16.1689 2.87322 16.371 3.25107 16.2374 3.41289C16.1037 3.57471 15.6635 3.44402 14.7831 3.18264C13.9029 2.92131 12.9684 2.78071 12 2.78071C6.75329 2.78071 2.5 6.90822 2.5 11.9998C2.5 13.6789 2.96262 15.2533 3.77093 16.6093M8.83333 22.9998L8.23536 21.882C7.83108 21.1263 7.62894 20.7484 7.7626 20.5866C7.89627 20.4248 8.33649 20.5555 9.21689 20.8169C10.0971 21.0782 11.0316 21.2188 12 21.2188C17.2467 21.2188 21.5 17.0913 21.5 11.9998C21.5 10.3206 21.0374 8.74623 20.2291 7.39023" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <div class="control right"/><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+    <path d="M18.5 12L4.99997 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M13 18C13 18 19 13.5811 19 12C19 10.4188 13 6 13 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg></div>
+    </div>
+    <div class="controlSplit">
+      <div class="control down left">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+    <path d="M15 17.3497C15 17.3497 8.06166 17.8924 7.08461 16.9154C6.10755 15.9383 6.65037 9 6.65037 9M7.5 16.5L17.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+      </div>
+      <div class="control down">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+    <path d="M12 18.502V5.00195" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M18 13.002C18 13.002 13.5811 19.0019 12 19.002C10.4188 19.002 6 13.002 6 13.002" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+    </div>
+    <div class="control down right">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+    <path d="M9 17.3497C9 17.3497 15.9383 17.8924 16.9154 16.9154C17.8924 15.9383 17.3496 9 17.3496 9M16.5 16.5L6.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+    </div>
+    </div>
+    
+  </div>
+  <div class="bigRadar" style="display: none;">
+  </div>
+  <script>
+    const menu = document.querySelector('.menu');
+    const items = menu.querySelectorAll('.menuItem');
+    const returnButton = document.querySelector('.returnButton');
+    const controller = document.querySelector('.controller')
+    const bigRadar = document.querySelector('.bigRadar');
+    items[0].addEventListener('click', () => {
+      returnButton.style.display = 'block';
+
+      controller.style.display = 'block';
+      menu.style.display = 'none';
+      bigRadar.style.display = 'none';
+      bigRadar.querySelectorAll('*').forEach(e => e.style.display = 'none');
+    });
+    items[1].addEventListener('click', () => {
+      returnButton.style.display = 'block';
+      controller.style.display = 'none';
+      menu.style.display = 'none';
+      
+      bigRadar.style.display = 'block';
+      bigRadar.querySelectorAll('*').forEach(e => e.style.display = 'block');
+    });
+    returnButton.addEventListener('click', () => {
+      controller.style.display = 'none';
+      bigRadar.style.display = 'none';
+      menu.style.display = 'flex';
+      returnButton.style.display = 'none';
+    });
+    let lastCircle = bigRadar;
+    let lastCircleSize = lastCircle.getBoundingClientRect().width;
+    for (let i = 0; i < 10; i++) {
+      const newCircle = lastCircle.cloneNode();
+      newCircle.style.transform = `scale(${1 - i * 0.1})`;
+      newCircle.style.borderWidth = `${2 + i * 0.5}px`; // Increment border width for each
+      newCircle.classList.add('circleLayer');
+      bigRadar.appendChild(newCircle);
+      lastCircle = newCircle;
+    }
+    const origin = [50, 50];
+    const originPoint = document.createElement('div');
+    originPoint.classList.add('originPoint');
+    originPoint.style.top = `${origin[1]}%`;
+    originPoint.style.transform = 'translate(-50%, -50%)';
+    originPoint.style.left = `${origin[0]}%`;
+    bigRadar.appendChild(originPoint);
+    function addPoint(x, y) {
+      const point = document.createElement('div');
+      point.style.position = 'absolute';
+      point.style.width = '6px';
+      point.style.height = '6px';
+      point.style.background = 'lime';
+      point.style.filter = 'opacity(1)'
+      point.style.borderRadius = '100000px';
+      point.style.left = `calc(${x}% - 3px)`;
+      point.style.top = `calc(${y}% - 3px)`;
+      
+      point.style.transform = 'translate(-50%, -50%)';
+      point.classList.add('radarPoint');
+      bigRadar.appendChild(point);
+      // Desaparecer después de 1s
+      setTimeout(() => {
+        point.style.opacity = '0';
+      }, 1000);
+
+      // Eliminar del DOM después de 1.5s
+      setTimeout(() => {
+        point.remove();
+      }, 1500);
+      return point
+    }
+    // Example points
+    setInterval(() => {
+      const angle = Math.random() * 360; // random angle in radians
+      const radius = Math.random() * 100;         // max 50% of radar radius
+      const [x, y] = distanceAngleToXY(radius, angle);
+
+      addPoint(x, y);
+    }, 10); // one point every 200ms
+    function distanceAngleToXY(distance, angle) { // Angle in degrees, distance in % of radar radius
+      angle = - angle * Math.PI / 180;
+      distance = distance * 0.5; // Convert to % of radar diameter
+      const x = origin[0] + distance * Math.cos(angle);
+      const y = origin[1] + distance * Math.sin(angle);
+      return [x, y];
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+
+# Logs
+logs
+*.log
+ros4meetup/ros_venv/
+ros4meetup/venv/
+ros4meetup/ros4meetup/build
+ros4meetup/ros4meetup/install
+ros4meetup/ros4meetup/log
+*/install
+*/build
+*/log
+*/venv
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+venv/
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+

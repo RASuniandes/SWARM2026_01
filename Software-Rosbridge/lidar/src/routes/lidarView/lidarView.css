@@ -1,0 +1,51 @@
+.bigRadar{
+      height: 70vh;
+      aspect-ratio: 1 / 1;
+      border: 2px solid white;
+      border-radius: 100000px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left:50%;
+      filter: opacity(0.8);
+      transform: translate(-50%, -50%);
+      .circleLayer {
+        position: absolute;
+        border: 2px solid white;
+        border-radius: 100000px;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        transform-origin: center center;
+      }
+    }
+    .radarPoint{
+      animation: blink 1s linear forwards;
+
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: lime;
+      filter: opacity(1);
+      border-radius: 100000px;
+      transform: translate(-50%, -50%);
+    }
+    @keyframes blink {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    .originPoint{
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: red;
+      border-radius: 100000px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+    }
