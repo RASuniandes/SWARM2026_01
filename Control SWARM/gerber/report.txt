@@ -1,0 +1,12 @@
+Plotted to '/Users/ivandavidgomezsilva/Documents/Ivan/Uniandes/RAS_uniandes/Control SWARM/Control SWARM-F_Cu.gbr'.
+Plotted to '/Users/ivandavidgomezsilva/Documents/Ivan/Uniandes/RAS_uniandes/Control SWARM/Control SWARM-B_Cu.gbr'.
+Plotted to '/Users/ivandavidgomezsilva/Documents/Ivan/Uniandes/RAS_uniandes/Control SWARM/Control SWARM-F_Paste.gbr'.
+Plotted to '/Users/ivandavidgomezsilva/Documents/Ivan/Uniandes/RAS_uniandes/Control SWARM/Control SWARM-B_Paste.gbr'.
+Plotted to '/Users/ivandavidgomezsilva/Documents/Ivan/Uniandes/RAS_uniandes/Control SWARM/Control SWARM-F_Silkscreen.gbr'.
+Plotted to '/Users/ivandavidgomezsilva/Documents/Ivan/Uniandes/RAS_uniandes/Control SWARM/Control SWARM-B_Silkscreen.gbr'.
+Plotted to '/Users/ivandavidgomezsilva/Documents/Ivan/Uniandes/RAS_uniandes/Control SWARM/Control SWARM-F_Mask.gbr'.
+Plotted to '/Users/ivandavidgomezsilva/Documents/Ivan/Uniandes/RAS_uniandes/Control SWARM/Control SWARM-B_Mask.gbr'.
+Plotted to '/Users/ivandavidgomezsilva/Documents/Ivan/Uniandes/RAS_uniandes/Control SWARM/Control SWARM-Edge_Cuts.gbr'.
+Created Gerber job file '/Users/ivandavidgomezsilva/Documents/Ivan/Uniandes/RAS_uniandes/Control SWARM/Control SWARM-job.gbrjob'.
+Info: Done.
+Info: Done.

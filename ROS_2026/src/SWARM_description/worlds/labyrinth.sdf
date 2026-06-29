@@ -1,0 +1,122 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+  <world name="maze_zone">
+    
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 15 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry><plane><normal>0 0 1</normal><size>150 150</size></plane></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal><size>150 150</size></plane></geometry>
+          <material>
+            <ambient>0.2 0.2 0.2 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="inner_wall_1"><static>true</static><pose>0 4 0.5 0 0 0</pose>
+      <link name="l"><collision name="c"><geometry><box><size>4 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>4 0.2 1.2</size></box></geometry><material><diffuse>0.7 0.3 0.3 1</diffuse></material></visual></link>
+    </model>
+    <model name="inner_wall_2"><static>true</static><pose>0 -4 0.5 0 0 0</pose>
+      <link name="l"><collision name="c"><geometry><box><size>4 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>4 0.2 1.2</size></box></geometry><material><diffuse>0.7 0.3 0.3 1</diffuse></material></visual></link>
+    </model>
+    <model name="inner_wall_3"><static>true</static><pose>4 0 0.5 0 0 1.5708</pose>
+      <link name="l"><collision name="c"><geometry><box><size>4 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>4 0.2 1.2</size></box></geometry><material><diffuse>0.7 0.3 0.3 1</diffuse></material></visual></link>
+    </model>
+
+    <model name="mid_wall_r8_1"><static>true</static><pose>5.65 5.65 0.5 0 0 0.785</pose>
+      <link name="l"><collision name="c"><geometry><box><size>6 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>6 0.2 1.2</size></box></geometry><material><diffuse>0.3 0.6 0.3 1</diffuse></material></visual></link>
+    </model>
+    <model name="mid_wall_r8_2"><static>true</static><pose>-5.65 5.65 0.5 0 0 -0.785</pose>
+      <link name="l"><collision name="c"><geometry><box><size>6 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>6 0.2 1.2</size></box></geometry><material><diffuse>0.3 0.6 0.3 1</diffuse></material></visual></link>
+    </model>
+    <model name="mid_wall_r8_3"><static>true</static><pose>5.65 -5.65 0.5 0 0 -0.785</pose>
+      <link name="l"><collision name="c"><geometry><box><size>6 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>6 0.2 1.2</size></box></geometry><material><diffuse>0.3 0.6 0.3 1</diffuse></material></visual></link>
+    </model>
+    <model name="mid_wall_r8_4"><static>true</static><pose>-5.65 -5.65 0.5 0 0 0.785</pose>
+      <link name="l"><collision name="c"><geometry><box><size>6 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>6 0.2 1.2</size></box></geometry><material><diffuse>0.3 0.6 0.3 1</diffuse></material></visual></link>
+    </model>
+
+    <model name="mid_wall_r12_1"><static>true</static><pose>0 12 0.5 0 0 0</pose>
+      <link name="l"><collision name="c"><geometry><box><size>8 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>8 0.2 1.2</size></box></geometry><material><diffuse>0.3 0.3 0.7 1</diffuse></material></visual></link>
+    </model>
+    <model name="mid_wall_r12_2"><static>true</static><pose>0 -12 0.5 0 0 0</pose>
+      <link name="l"><collision name="c"><geometry><box><size>8 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>8 0.2 1.2</size></box></geometry><material><diffuse>0.3 0.3 0.7 1</diffuse></material></visual></link>
+    </model>
+    <model name="mid_wall_r12_3"><static>true</static><pose>12 0 0.5 0 0 1.5708</pose>
+      <link name="l"><collision name="c"><geometry><box><size>8 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>8 0.2 1.2</size></box></geometry><material><diffuse>0.3 0.3 0.7 1</diffuse></material></visual></link>
+    </model>
+    <model name="mid_wall_r12_4"><static>true</static><pose>-12 0 0.5 0 0 1.5708</pose>
+      <link name="l"><collision name="c"><geometry><box><size>8 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>8 0.2 1.2</size></box></geometry><material><diffuse>0.3 0.3 0.7 1</diffuse></material></visual></link>
+    </model>
+
+    <model name="out_1"><static>true</static><pose>11.3 11.3 0.5 0 0 0.785</pose>
+      <link name="l"><collision name="c"><geometry><box><size>10 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>10 0.2 1.2</size></box></geometry><material><diffuse>0.6 0.6 0.2 1</diffuse></material></visual></link>
+    </model>
+    <model name="out_2"><static>true</static><pose>-11.3 11.3 0.5 0 0 -0.785</pose>
+      <link name="l"><collision name="c"><geometry><box><size>10 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>10 0.2 1.2</size></box></geometry><material><diffuse>0.6 0.6 0.2 1</diffuse></material></visual></link>
+    </model>
+    <model name="out_3"><static>true</static><pose>11.3 -11.3 0.5 0 0 -0.785</pose>
+      <link name="l"><collision name="c"><geometry><box><size>10 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>10 0.2 1.2</size></box></geometry><material><diffuse>0.6 0.6 0.2 1</diffuse></material></visual></link>
+    </model>
+    <model name="out_4"><static>true</static><pose>-11.3 -11.3 0.5 0 0 0.785</pose>
+      <link name="l"><collision name="c"><geometry><box><size>10 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>10 0.2 1.2</size></box></geometry><material><diffuse>0.6 0.6 0.2 1</diffuse></material></visual></link>
+    </model>
+
+    <model name="spoke_1"><static>true</static><pose>2 2 0.5 0 0 0.785</pose>
+      <link name="l"><collision name="c"><geometry><box><size>2.5 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>2.5 0.2 1.2</size></box></geometry><material><diffuse>0.5 0.5 0.5 1</diffuse></material></visual></link>
+    </model>
+    <model name="spoke_2"><static>true</static><pose>-2 -2 0.5 0 0 0.785</pose>
+      <link name="l"><collision name="c"><geometry><box><size>2.5 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>2.5 0.2 1.2</size></box></geometry><material><diffuse>0.5 0.5 0.5 1</diffuse></material></visual></link>
+    </model>
+    <model name="spoke_3"><static>true</static><pose>6 0 0.5 0 0 0</pose>
+      <link name="l"><collision name="c"><geometry><box><size>4 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>4 0.2 1.2</size></box></geometry><material><diffuse>0.5 0.5 0.5 1</diffuse></material></visual></link>
+    </model>
+    <model name="spoke_4"><static>true</static><pose>-10 4 0.5 0 0 1.5708</pose>
+      <link name="l"><collision name="c"><geometry><box><size>4 0.2 1.2</size></box></geometry></collision>
+      <visual name="v"><geometry><box><size>4 0.2 1.2</size></box></geometry><material><diffuse>0.5 0.5 0.5 1</diffuse></material></visual></link>
+    </model>
+
+  </world>
+</sdf>

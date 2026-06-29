@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>serial_bridge</name>
+  <version>0.0.0</version>
+  <description>Serial bridge between ROS 2 and an ESP32.</description>
+
+  <maintainer email="raspi@todo.todo">raspi</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- build -->
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <!-- runtime -->
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>pyserial</exec_depend>
+
+  <!-- export -->
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
